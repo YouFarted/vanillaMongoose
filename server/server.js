@@ -14,6 +14,12 @@ const port = process.env.PORT || 3001;
 // if you're not production, a dedicated local server is hosting express on port 3000
 let production = process.argv.find(el => el == "--production");
 
+if(production) {
+    console.log("We're running in production");
+} else {
+    console.log("We're NOT running in production");
+}
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
