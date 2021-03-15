@@ -27,7 +27,7 @@ app.use(express.json());
 
 app.use(routes);
 
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
 /*
 // uncomment this section to watch the database connectivity happen
@@ -42,12 +42,12 @@ db.Shoe.create({make:"Nike", model:"Air"})
 })
 */
 
-/*
+
 db.User.create({firstName:"firstNameTest", lastName:"lastNameTest"})
 .then(newUser => {
     console.log("new user", newUser);
 })
-
+/*
 
 let clientstaticpath = "";
 
