@@ -1,11 +1,11 @@
 import express from "express";
 import path from "path";
-import dotenv from "dotenv";
-import mongoose from 'mongoose';
-import * as db from './models/index.js';
+//import dotenv from "dotenv";
+//import mongoose from 'mongoose';
+//import * as db from './models/index.js';
 //import { routes } from "./routes/index.js";
 
-dotenv.config({path:path.resolve(process.cwd(), "..", '.env')});
+//dotenv.config({path:path.resolve(process.cwd(), "..", '.env')});
 
 const port = process.env.PORT || 3001;
 
