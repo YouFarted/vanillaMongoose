@@ -5,6 +5,25 @@ import mongoose from 'mongoose';
 import * as db from './models/index.js';
 import { routes } from "./routes/index.js";
 
+
+function writeSomeStuffToTheDatabase()
+{
+    db.Book.create({author: "author", title:"title"})
+    .then(newBook => {
+        console.log("!!!!!!! NEW BOOK",newBook);
+    });
+    db.Shoe.create({make:"Nike", model:"Air"})
+    .then(newShoe => {
+        console.log("!!!!!!! NEW Shoe",newShoe);
+    });
+
+    db.User.create({firstName:"firstNameTest", lastName:"lastNameTest"})
+    .then(newUser => {
+        console.log("new user", newUser);
+    });
+}
+
+
 dotenv.config({path:path.resolve(process.cwd(), "..", '.env')});
 
 const port = process.env.PORT || 3001;
@@ -13,7 +32,6 @@ const port = process.env.PORT || 3001;
 //  built express client from the build folder.
 // if you're not production, a dedicated local server is hosting express on port 3000
 let production = process.argv.find(el => el == "--production");
-//production = 1;
 
 if(production) {
     console.log("We're running in production");
@@ -29,24 +47,9 @@ app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-/*
-// uncomment this section to watch the database connectivity happen
 
-db.Book.create({author: "author", title:"title"})
-.then(newBook => {
-    console.log("!!!!!!! NEW BOOK",newBook);
-}) 
-db.Shoe.create({make:"Nike", model:"Air"})
-.then(newShoe => {
-    console.log("!!!!!!! NEW Shoe",newShoe);
-})
-*/
+//writeSomeStuffToTheDatabase()
 
-
-db.User.create({firstName:"firstNameTest", lastName:"lastNameTest"})
-.then(newUser => {
-    console.log("new user", newUser);
-})
 
 
 let clientstaticpath = "";
@@ -65,12 +68,6 @@ if(clientstaticpath != "") {
 }
 
 app.use("/nonReact",express.static(path.join(__dirname,"nonReact_publics")));
-
-/*
-app.get("/", (req, res) => {
-    res.end("At least the server is running");
-})
-*/
 
 // start the Express server
 app.listen( port, () => {
