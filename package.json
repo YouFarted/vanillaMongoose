@@ -11,13 +11,12 @@
     "clean:modules": "rm -rf ./client/node_modules && rm -rf ./server/node_modules && rm -rf ./node_modules",
     "clean:build": "rm -rf ./build",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "cd server && node server.js --production",
-    "start:prod-maybe-failing": "node server/server.js --production",
+    "start:prod": "node server/server.js --production",
     "start:dev:serveronly": "cd server && npm run dev",
     "start:dev:clientonly": "cd client && npm run start",
     "start:dev": "concurrently \"npm run start:dev:serveronly\" \"npm run start:dev:clientonly\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./build && cd client && npm run build",
+    "build": "rm -rf ./build && cd client && npm run build && cd ../server && npm build",
     "build-inactive": "rm -rf ./build && cd server && npm run build && cd ../client && npm run build",
     "heroku-postbuild": "npm run build",
     "install": "cd server && npm install && cd ../client && npm install"
@@ -27,5 +26,8 @@
   "license": "ISC",
   "dependencies": {
     "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
   }
 }
