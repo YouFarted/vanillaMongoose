@@ -47,7 +47,7 @@ db.User.create({firstName:"firstNameTest", lastName:"lastNameTest"})
 .then(newUser => {
     console.log("new user", newUser);
 })
-/*
+
 
 let clientstaticpath = "";
 
@@ -62,12 +62,15 @@ if(production) {
 
 if(clientstaticpath != "") {
     app.use(express.static(clientstaticpath));
-*/
+}
 
-//app.use("/nonReact",express.static(path.join(__dirname,"nonReact_publics")));
+app.use("/nonReact",express.static(path.join(__dirname,"nonReact_publics")));
+
+/*
 app.get("/", (req, res) => {
     res.end("At least the server is running");
 })
+*/
 
 // start the Express server
 app.listen( port, () => {
