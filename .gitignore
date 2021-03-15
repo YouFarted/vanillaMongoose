@@ -3,6 +3,7 @@
 *.swp
 
 build
+local
 
 # Logs
 logs

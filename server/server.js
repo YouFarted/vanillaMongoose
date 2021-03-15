@@ -9,11 +9,10 @@ dotenv.config({path:path.resolve(process.cwd(), "..", '.env')});
 
 const port = process.env.PORT || 3001;
 
-console.log("argv: ", process.argv);
-
+// I user a --production argument to server.js to decide if we're running the
+//  built express client from the build folder.
+// if you're not production, a dedicated local server is hosting express on port 3000
 let production = process.argv.find(el => el == "--production");
-
-console.log(`production = ${production}`);
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -23,9 +22,8 @@ app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-console.log("db.Book:", db.Book);
-
-// Test mongo connectivity.  TODO remove this.
+/*
+// uncomment this section to watch the database connectivity happen
 
 db.Book.create({author: "author", title:"title"})
 .then(newBook => {
@@ -35,6 +33,13 @@ db.Shoe.create({make:"Nike", model:"Air"})
 .then(newShoe => {
     console.log("!!!!!!! NEW Shoe",newShoe);
 })
+*/
+/*
+db.User.create({firstName:"firstName", lastName:"lastName"})
+.then(newUser => {
+    console.log("new user", newUser);
+})
+*/
 
 let clientstaticpath = "";
 
