@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
+  "engines": {
+    "node": "14.x"
+   },
   "scripts": {
     "clean": "npm run clean:build && npm run clean:modules",
     "clean:modules": "rm -rf ./client/node_modules && rm -rf ./server/node_modules && rm -rf ./node_modules",
