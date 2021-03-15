@@ -3,7 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 import mongoose from 'mongoose';
 import * as db from './models/index.js';
-import { routes } from "./routes/index.js";
+//import { routes } from "./routes/index.js";
 
 dotenv.config({path:path.resolve(process.cwd(), "..", '.env')});
 
@@ -25,9 +25,9 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(routes);
+//app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
 /*
 // uncomment this section to watch the database connectivity happen
@@ -42,6 +42,7 @@ db.Shoe.create({make:"Nike", model:"Air"})
 })
 */
 
+/*
 db.User.create({firstName:"firstNameTest", lastName:"lastNameTest"})
 .then(newUser => {
     console.log("new user", newUser);
@@ -59,12 +60,14 @@ if(production) {
     clientstaticpath = path.join(__dirname, "..", "build", "clientbuild");
 }
 
-/*
 if(clientstaticpath != "") {
     app.use(express.static(clientstaticpath));
 */
 
-app.use("/nonReact",express.static(path.join(__dirname,"nonReact_publics")));
+//app.use("/nonReact",express.static(path.join(__dirname,"nonReact_publics")));
+app.get("/", (req, res) => {
+    res.end("At least the server is running");
+})
 
 // start the Express server
 app.listen( port, () => {
