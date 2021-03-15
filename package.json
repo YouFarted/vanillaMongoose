@@ -16,8 +16,8 @@
     "build": "rm -rf ./build && cd client && npm run build",
     "build-inactive": "rm -rf ./build && cd server && npm run build && cd ../client && npm run build",
     "heroku-postbuild": "npm run build",
-    "install":"cd client && npm install",
-    "install-misnamed-intentionally": "cd server && npm install && cd ../client && npm install"
+    "install-enough": "cd client && npm install",
+    "install": "cd server && npm install && cd ../client && npm install"
   },
   "keywords": [],
   "author": "",
